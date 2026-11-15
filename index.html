@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Pastas Caseras Martita · Catálogo mayorista</title>
+<meta name="description" content="Sorrentinos, tartas, ñoquis y ñoquis tricolor hechos a mano. Precios por mayor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root { --masa:#F6E7BF; --masa-claro:#FBF3DC; --tomate:#C23B22; --tomate-oscuro:#9E2C17; --albahaca:#1E4D3B; --tinta:#2A1B12; --radio:18px; --ancho:1180px; color-scheme: light; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html { scroll-behavior:smooth; scroll-padding-top:90px; }
+  body { font-family:"Figtree",system-ui,sans-serif; background:var(--masa-claro); color:var(--tinta); line-height:1.5; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px); }
+  button { font:inherit; cursor:pointer; }
+  :focus-visible { outline:3px solid var(--albahaca); outline-offset:3px; border-radius:6px; }
+  .wrap { width:min(var(--ancho),92vw); margin-inline:auto; }
+
+  .top { position:sticky; top:env(safe-area-inset-top,0px); z-index:20; background:var(--masa-claro); border-bottom:2px solid var(--tinta); }
+  .top .wrap { display:flex; align-items:center; justify-content:space-between; gap:1rem; padding:.75rem 0; }
+  .marca { font-family:"Gloock",serif; font-size:1.35rem; color:var(--tomate); text-decoration:none; line-height:1.1; }
+  .marca small { display:block; font-family:"Figtree",sans-serif; font-weight:600; font-size:.78rem; color:var(--tinta); }
+  .btn-carrito { background:var(--tinta); color:var(--masa-claro); border-radius:999px; padding:.6rem 1.1rem; font-weight:700; text-decoration:none; display:inline-flex; gap:.5rem; align-items:center; }
+  .btn-carrito .n { background:var(--tomate); color:#fff; border-radius:999px; padding:0 .5rem; font-size:.85rem; }
+
+  .hero { background:var(--tomate); color:#FFF7E6; position:relative; overflow:hidden; }
+  .hero .wrap { display:grid; grid-template-columns:1.25fr .75fr; gap:2rem; align-items:center; padding:clamp(2.5rem,6vw,5rem) 0; }
+  .hero h1 { font-family:"Gloock",serif; font-weight:400; font-size:clamp(2.6rem,6.5vw,5.2rem); line-height:.98; }
+  .hero p { font-size:clamp(1.05rem,1.7vw,1.25rem); max-width:34ch; margin-top:1.25rem; }
+  .acciones { display:flex; flex-wrap:wrap; gap:.75rem; margin-top:2rem; }
+  .btn { display:inline-block; text-decoration:none; border-radius:999px; padding:.85rem 1.5rem; font-weight:800; border:2px solid transparent; }
+  .btn-principal { background:var(--masa); color:var(--tinta); }
+  .btn-secundario { border-color:currentColor; color:inherit; }
+  .sello { justify-self:center; width:min(280px,70vw); aspect-ratio:1; border-radius:50%; background:var(--masa); color:var(--tinta); display:grid; place-items:center; text-align:center; transform:rotate(-8deg); box-shadow:10px 10px 0 var(--tinta); padding:2rem; }
+  .sello strong { display:block; font-family:"Gloock",serif; font-weight:400; font-size:clamp(2.2rem,5vw,3.2rem); line-height:1; color:var(--tomate); }
+  .sello span { display:block; font-weight:700; margin-top:.4rem; }
+  .ondas { position:absolute; left:0; right:0; bottom:-1px; height:26px; background:var(--masa-claro); clip-path:polygon(0 100%,0 40%,5% 0,10% 40%,15% 0,20% 40%,25% 0,30% 40%,35% 0,40% 40%,45% 0,50% 40%,55% 0,60% 40%,65% 0,70% 40%,75% 0,80% 40%,85% 0,90% 40%,95% 0,100% 40%,100% 100%); }
+
+
+  .mantel { background-color:#FBF3DC; background-image:
+    repeating-linear-gradient(0deg, rgba(194,59,34,.16) 0 11px, transparent 11px 22px),
+    repeating-linear-gradient(90deg, rgba(194,59,34,.16) 0 11px, transparent 11px 22px); }
+  .top::after { content:""; position:absolute; left:0; right:0; bottom:-14px; height:14px; pointer-events:none;
+    background-color:#FBF3DC; background-image:
+    repeating-linear-gradient(0deg, rgba(194,59,34,.16) 0 7px, transparent 7px 14px),
+    repeating-linear-gradient(90deg, rgba(194,59,34,.16) 0 7px, transparent 7px 14px); }
+  .top { position:sticky; }
+  .hero .mantel-borde { position:absolute; left:0; right:0; top:0; height:18px; opacity:.9; }
+  .sello { background:#FBF3DC; }
+  .arte.mantel { border-bottom:2px solid var(--tinta); }
+  .arte .sombra { position:absolute; inset:0; background:rgba(255,255,255,.35); }
+
+  .reglas { padding:2.5rem 0 1rem; }
+  .reglas .wrap { display:grid; grid-template-columns:repeat(2,1fr); gap:1rem; }
+  .regla { background:var(--masa); border-radius:var(--radio); padding:1.25rem 1.4rem; border:2px solid var(--tinta); }
+  .regla b { font-family:"Gloock",serif; font-weight:400; font-size:1.35rem; display:block; color:var(--albahaca); }
+  .regla span { font-size:.95rem; }
+
+
+  .novedad { margin:1.5rem auto 0; width:min(var(--ancho),92vw); background:var(--tinta); color:var(--masa-claro); border-radius:var(--radio); padding:1.1rem 1.3rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:.8rem 1.2rem; }
+  .novedad b { font-family:"Gloock",serif; font-weight:400; font-size:1.35rem; display:block; }
+  .novedad span { font-size:.95rem; opacity:.9; }
+  .novedad a { background:var(--masa); color:var(--tinta); text-decoration:none; font-weight:800; border-radius:999px; padding:.7rem 1.2rem; white-space:nowrap; }
+  .catalogo { padding:2.5rem 0 4rem; }
+  .cabecera { display:flex; flex-wrap:wrap; justify-content:space-between; align-items:end; gap:1rem; margin-bottom:1.5rem; }
+  .cabecera h2 { font-family:"Gloock",serif; font-weight:400; font-size:clamp(2rem,4vw,2.9rem); line-height:1.05; }
+  .filtros { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.75rem; width:100%; }
+  .tile { text-align:left; background:var(--masa-claro); border:2px solid var(--tinta); border-radius:var(--radio); padding:1rem 1.1rem; box-shadow:4px 4px 0 var(--tinta); display:flex; flex-direction:column; gap:.2rem; }
+  .seleccion { display:flex; justify-content:space-between; align-items:center; gap:1rem; border-bottom:2px solid var(--tinta); padding-bottom:.6rem; margin-bottom:1.25rem; }
+  .seleccion[hidden] { display:none; }
+  .seleccion h3 { font-family:"Gloock",serif; font-weight:400; font-size:1.7rem; line-height:1.1; }
+  .cerrar-seleccion { width:2.4rem; height:2.4rem; border-radius:999px; border:2px solid var(--tinta); background:transparent; color:var(--tinta); font-size:1.4rem; line-height:1; }
+  .cerrar-seleccion:hover { background:var(--tinta); color:var(--masa-claro); }
+  .elegir { margin-bottom:1.25rem; max-width:62ch; }
+  .elegir p { margin-top:.4rem; }
+  .elegir .gancho { font-family:"Gloock",serif; font-size:1.4rem; line-height:1.15; margin-top:0; }
+  .elegir a { color:var(--tomate-oscuro); font-weight:800; }
+  .tile b { font-family:"Gloock",serif; font-weight:400; font-size:1.35rem; line-height:1.1; }
+  .tile .cuenta { font-size:.85rem; font-weight:600; opacity:.8; }
+  .tile[aria-pressed="true"] { background:var(--tinta); color:var(--masa-claro); }
+  .tile[aria-pressed="true"] .cuenta { opacity:1; }
+  .filtro { border:2px solid var(--tinta); background:transparent; color:var(--tinta); border-radius:999px; padding:.4rem .95rem; font-weight:700; }
+  .filtro[aria-pressed="true"] { background:var(--tinta); color:var(--masa-claro); }
+
+  .grilla { display:grid; grid-template-columns:repeat(auto-fill,minmax(270px,1fr)); gap:1.25rem; }
+  .producto { background:var(--masa-claro); border:2px solid var(--tinta); border-radius:var(--radio); overflow:hidden; display:flex; flex-direction:column; box-shadow:6px 6px 0 var(--tinta); }
+  .arte { height:150px; display:grid; place-items:center; position:relative; border-bottom:2px solid var(--tinta); }
+  .arte .foto { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; border-radius:0; }
+  .arte .familia { z-index:1; }
+  .arte svg { width:110px; height:110px; }
+  .familia { position:absolute; top:.75rem; left:.75rem; background:var(--tinta); color:var(--masa-claro); font-size:.78rem; font-weight:700; border-radius:999px; padding:.15rem .6rem; }
+  .cuerpo { padding:1rem 1.1rem 1.1rem; display:flex; flex-direction:column; gap:.5rem; flex:1; }
+  .producto h3 { font-family:"Gloock",serif; font-weight:400; font-size:1.3rem; line-height:1.1; }
+  .producto > .cuerpo > p { font-size:.93rem; }
+  .aclaracion { font-size:1.12rem; font-weight:800; color:var(--tomate-oscuro); margin-top:.1rem; }
+  .presentacion { font-size:.9rem; font-weight:600; }
+  p.rinde { font-size:.88rem; color:var(--albahaca); }
+  details { border-top:1px dashed rgba(42,27,18,.35); padding-top:.5rem; }
+  summary { cursor:pointer; font-weight:800; color:var(--albahaca); }
+  details ol { margin:.5rem 0 0 1.1rem; font-size:.9rem; display:grid; gap:.3rem; }
+  details p.rinde { font-size:.85rem; font-weight:600; margin-top:.4rem; }
+  .precio { margin-top:auto; padding-top:.5rem; display:flex; align-items:baseline; justify-content:space-between; gap:.5rem; flex-wrap:wrap; }
+  .precio strong { font-size:1.5rem; font-weight:800; color:var(--tomate); }
+  .precio small { font-size:.85rem; font-weight:600; }
+  .agregar { width:100%; margin-top:.5rem; background:var(--albahaca); color:#fff; border:0; border-radius:12px; padding:.75rem; font-weight:800; }
+  .agregar:hover { background:#163a2c; }
+
+  .pedido { background:var(--tinta); color:var(--masa-claro); padding:3rem 0; }
+  .pedido .wrap { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start; }
+  .pedido h2 { font-family:"Gloock",serif; font-weight:400; font-size:clamp(2rem,4vw,2.8rem); line-height:1.05; }
+  .pedido p { margin-top:.75rem; opacity:.9; max-width:44ch; }
+  .tabla { background:var(--masa-claro); color:var(--tinta); border-radius:var(--radio); padding:1.25rem; }
+  .linea { display:grid; grid-template-columns:1fr auto; gap:.5rem; padding:.6rem 0; border-bottom:1px dashed rgba(42,27,18,.35); align-items:center; }
+  .ctrl { display:inline-flex; align-items:center; gap:.4rem; }
+  .ctrl button { width:2rem; height:2rem; border-radius:999px; border:2px solid var(--tinta); background:transparent; color:var(--tinta); font-weight:800; }
+  .ctrl output { min-width:3.5rem; text-align:center; font-weight:700; }
+  .vacio { padding:1rem 0; font-weight:600; }
+  .totales { margin-top:1rem; display:grid; gap:.35rem; font-weight:600; }
+  .totales .gran { font-size:1.3rem; font-weight:800; color:var(--tomate-oscuro); }
+  .descuento { font-size:.9rem; color:var(--albahaca); font-weight:700; }
+  .enviar { display:block; text-align:center; text-decoration:none; margin-top:1rem; background:var(--tomate); color:#fff; border-radius:999px; padding:.95rem; font-weight:800; }
+  .enviar[aria-disabled="true"] { opacity:.5; pointer-events:none; }
+  .nota { font-size:.8rem; margin-top:.75rem; opacity:.8; }
+  footer { padding:2.5rem 0; font-size:.95rem; border-top:2px solid var(--tinta); }
+  footer strong { font-family:"Gloock",serif; font-weight:400; color:var(--tomate); font-size:1.1rem; }
+
+
+  .pie { display:grid; grid-template-columns:1fr 1fr; gap:2rem; align-items:start; text-align:left; }
+  .pie-titulo { font-family:"Gloock",serif; font-size:1.3rem; color:var(--tomate); }
+  .pie-nota { font-size:.9rem; opacity:.85; margin-top:.5rem; }
+  .pie-links { display:flex; flex-wrap:wrap; gap:.6rem; margin-top:1rem; }
+  .pie-links .btn-principal { background:var(--tomate); color:#fff; }
+  .pie-links .btn-secundario { color:var(--tinta); border-color:var(--tinta); }
+
+  .consulta { position:fixed; right:1rem; bottom:calc(1rem + env(safe-area-inset-bottom,0px)); z-index:30; display:flex; flex-direction:column; align-items:flex-end; gap:.6rem; }
+  .consulta-burbuja { background:var(--masa-claro); color:var(--tinta); border:2px solid var(--tinta); border-radius:16px; padding:.8rem 1rem; max-width:260px; font-size:.95rem; box-shadow:6px 6px 0 var(--tinta); display:flex; gap:.6rem; align-items:flex-start; }
+  .consulta-burbuja[hidden] { display:none; }
+  .consulta-burbuja button { background:transparent; border:0; font-size:1.1rem; line-height:1; color:var(--tinta); padding:0 .2rem; }
+  .consulta-wa { display:inline-flex; align-items:center; gap:.5rem; background:#25D366; color:#fff; text-decoration:none; font-weight:800; border-radius:999px; padding:.8rem 1.1rem; border:2px solid var(--tinta); box-shadow:4px 4px 0 var(--tinta); }
+  .consulta-wa svg { width:22px; height:22px; flex-shrink:0; }
+
+  @media (max-width:860px) { .pie { grid-template-columns:1fr; } }
+  @media (max-width:860px) {
+    .hero .wrap { grid-template-columns:1fr; }
+    .sello { justify-self:start; width:220px; }
+    .reglas .wrap, .pedido .wrap { grid-template-columns:1fr; }
+  }
+  @media (prefers-reduced-motion:reduce) { html { scroll-behavior:auto; } * { transition:none !important; } }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="marca" href="#inicio">Pastas Caseras Martita<small>Venta mayorista</small></a>
+    <a class="btn-carrito" href="#pedido" aria-label="Ver mi pedido">Mi pedido <span class="n" id="contador-top">0 cajas</span></a>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero" aria-labelledby="titulo">
+    <div class="mantel-borde mantel" aria-hidden="true"></div>
+    <div class="wrap">
+      <div>
+        <h1 id="titulo">Pasta casera de verdad, a precio de mayor.</h1>
+        <p>Sorrentinos, tartas, ñoquis y ñoquis tricolor, amasados a mano cada mañana. Pedí por caja y llevá tu negocio a otro nivel.</p>
+        <div class="acciones">
+          <a class="btn btn-principal" href="#catalogo">Ver el stock</a>
+          <a class="btn btn-secundario" href="#pedido">Armar mi pedido</a>
+        </div>
+      </div>
+      <div class="sello" aria-hidden="true"><div><strong>10</strong><span>cajas para ser<br>pedido mayorista</span></div></div>
+    </div>
+    <div class="ondas" aria-hidden="true"></div>
+  </section>
+
+  <section class="reglas" aria-label="Condiciones para mayoristas">
+    <div class="wrap">
+      <div class="regla"><b>Pedí con anticipación</b><span>Los pedidos mayoristas se piden con un día de anticipación.</span></div>
+      <div class="regla"><b>Congelado y listo</b><span>Se conserva en freezer hasta 60 días sin perder sabor.</span></div>
+    </div>
+  </section>
+
+<div class="novedad" role="region" aria-label="Novedad">
+    <div><b>Hay combos disponibles</b><span>Surtidos armados con nuestras pastas más pedidas, pensados para tu negocio. Tocá el botón y te contamos cuáles hay hoy.</span></div>
+    <a href="#" id="link-combos" target="_blank" rel="noopener">Quiero ver los combos</a>
+  </div>
+
+  <section class="catalogo" id="catalogo" aria-labelledby="titulo-catalogo">
+    <div class="wrap">
+      <div class="cabecera">
+        <h2 id="titulo-catalogo">Nuestro stock</h2>
+        <div class="filtros" role="group" aria-label="Elegir categoría">
+          <button class="filtro tile" data-filtro="sorrentinos" aria-pressed="false"><b>Sorrentinos</b><span class="cuenta"></span></button>
+          <button class="filtro tile" data-filtro="tartas" aria-pressed="false"><b>Tartas</b><span class="cuenta"></span></button>
+          <button class="filtro tile" data-filtro="noquis" aria-pressed="false"><b>Ñoquis</b><span class="cuenta"></span></button>
+          <button class="filtro tile" data-filtro="fideos" aria-pressed="false"><b>Fideos</b><span class="cuenta"></span></button>
+          <button class="filtro tile" data-filtro="ravioles" aria-pressed="false"><b>Ravioles</b><span class="cuenta"></span></button>
+        </div>
+      </div>
+      <div class="elegir" id="elegir">
+        <p class="gancho">Armá tu pedido mayorista en pocos minutos.</p>
+        <p>Elegí una categoría, sumá cajas y enviá el pedido por WhatsApp. Desde 10 cajas tenés descuento, y te recomendamos pedir con un día de anticipación para que llegue fresco.</p>
+        <p>¿Querés ver fotos de algún producto antes de pedir? <a href="#" id="link-fotos" target="_blank" rel="noopener">Pedí fotos por WhatsApp</a>.</p>
+      </div>
+      <div class="seleccion" id="seleccion" hidden></div>
+      <div class="grilla" id="grilla"></div>
+    </div>
+  </section>
+
+<section class="pedido" id="pedido" aria-labelledby="titulo-pedido">
+    <div class="wrap">
+      <div>
+        <h2 id="titulo-pedido">Tu pedido mayorista</h2>
+        <p>Elegí los productos y la cantidad en cajas. Al enviarlo por WhatsApp coordinamos pago y entrega.</p>
+        <p class="nota">Precios de referencia por caja. Pueden variar según temporada.</p>
+      </div>
+      <div class="tabla">
+        <div id="lineas"></div>
+        <p class="vacio" id="vacio">Todavía no agregaste productos.</p>
+        <div class="totales">
+          <span>Subtotal: <b id="subtotal">$0</b></span>
+          <span class="descuento" id="descuento"></span>
+          <span class="gran">Total: <span id="total">$0</span></span>
+        </div>
+        <a class="enviar" id="enviar" href="#" target="_blank" rel="noopener" aria-disabled="true">Enviar pedido por WhatsApp</a>
+        <p class="nota">Pedido mayorista desde 10 cajas, con descuento. Se pide con un día de anticipación.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer id="contacto">
+  <div class="wrap pie">
+    <div class="pie-marca">
+      <p><strong>Pastas Caseras Martita</strong> &copy; 2026</p>
+      <p>Hechas a mano, con huevo fresco y ganas de cocinar bien.</p>
+    </div>
+    <div class="pie-fabrica">
+      <p class="pie-titulo">Nuestra fábrica</p>
+      <p>Av. Santiago Gallo, T4178<br>Comuna Delfín Gallo, Tucumán, Argentina</p>
+      <p class="pie-nota">Si no hacemos envío a tu zona, podés venir a retirar tu pedido.</p>
+      <div class="pie-links">
+        <a class="btn btn-principal" href="https://www.google.com/maps/search/?api=1&amp;query=-26.84804,-65.08909" target="_blank" rel="noopener">Cómo llegar en Google Maps</a>
+        <a class="btn btn-secundario" href="https://maps.apple.com/?ll=-26.84804,-65.08909&amp;q=Pastas%20Caseras%20Martita&amp;z=17" target="_blank" rel="noopener">Abrir en Apple Maps</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const PRODUCTOS = [
+    { id:"sor-jq", familia:"sorrentinos", nombre:"Sorrentinos de jamón y queso", color:"#E8A33D", precio:10200, icono:"sorrentino",
+      desc:"Jamón cocido y queso fundido, con masa fina de huevo.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos, 1 cucharadita de aceite y una pizca de sal.",
+      pasos:["Amasar la masa hasta que quede lisa y elástica, y dejarla reposar 30 minutos tapada.","Picar el jamón y mezclarlo con queso de máquina y un poco de queso sardo rallado.","Estirar la masa muy fina, cortar cuadrados, poner una cucharada de relleno al centro y doblar en triángulo.","Sellar bordes con los dedos para que no se abran al hervir."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo con sal." },
+    { id:"sor-er", familia:"sorrentinos", nombre:"Sorrentinos de espinaca y ricota", color:"#1E4D3B", precio:9500, icono:"sorrentino",
+      desc:"Espinaca fresca con ricota y un toque de nuez moscada.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal.",
+      pasos:["Hervir la espinaca, escurrirla muy bien y picarla fino.","Saltear con un poco de cebolla, mezclar con ricota escurrida, parmesano y nuez moscada.","Estirar la masa, cortar en cuadrados, rellenar y cerrar en triángulo sellando bien los bordes.","Refrigerar antes de cocinar para que el relleno no se aguae."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo." },
+    { id:"sor-ep", familia:"sorrentinos", nombre:"Sorrentinos de espinaca y pollo", color:"#1E4D3B", precio:9800, icono:"sorrentino",
+      desc:"Pollo desmenuzado, espinaca y cebolla caramelizada.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal (opcional: 100 g de espinaca licuada para masa verde).",
+      pasos:["Cocinar el pollo en caldo, desmenuzarlo y dejarlo enfriar.","Caramelizar cebolla a fuego bajo y mezclar con el pollo y la espinaca salteada.","Ligar el relleno con un poco de queso crema y sazonar con sal y pimienta.","Rellenar, sellar y cocinar; servir con manteca y salvia."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo." },
+    { id:"sor-tq", familia:"sorrentinos", nombre:"Sorrentinos de ternera y queso", color:"#8A4B2A", precio:10400, icono:"sorrentino",
+      desc:"Ternera cocida lento con morrón, pimentón y queso.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal.",
+      pasos:["Cocinar la ternera a fuego lento con cebolla y morrón hasta que se deshaga.","Picar o procesar la carne, sazonar con pimentón dulce y mezclar con queso rallado.","Dejar enfriar el relleno por completo antes de rellenar la masa.","Cerrar cada sorrentino con cuidado y cocinar en agua con sal."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo." },
+    { id:"sor-mb", familia:"sorrentinos", nombre:"Sorrentinos de carne braseada al malbec", color:"#5C1F2B", precio:11200, icono:"sorrentino", etiqueta:"Premium",
+      desc:"Carne braseada 3 horas con vino malbec, cebolla y zanahoria.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos, un chorro de vino tinto y una pizca de sal.",
+      pasos:["Dorar la carne, agregar cebolla, zanahoria y malbec, y cocinar a fuego bajo unas 3 horas.","Desgrasar el jugo, desmenuzar la carne y reducir la salsa hasta espesarla.","Mezclar la carne con esa reducción y dejar enfriar.","Rellenar, cerrar y servir con manteca de salvia o salsa de tomate."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo." },
+    { id:"tar-jq", familia:"tartas", nombre:"Tarta de jamón y queso", color:"#F2C75C", precio:7600, icono:"tarta",
+      desc:"Masa quebrada crocante, jamón y queso en cantidad.",
+      masa:"Masa quebrada: 250 g de harina, 125 g de manteca fría, 1 huevo y agua fría lo justo.",
+      pasos:["Hacer la masa desmenuzando la manteca con la harina y ligarla con el huevo y el agua. Reposar 30 minutos.","Batir 3 huevos con 200 ml de crema y sal.","Forrar un molde, cubrir con jamón picado y queso en trozos y volcar la mezcla.","Hornear a 180 °C durante 35 a 40 minutos, hasta que el centro esté firme."],
+      rinde:"Porción: 8 a 10 personas." },
+    { id:"tar-ep", familia:"tartas", nombre:"Tarta de espinaca y pollo", color:"#1E4D3B", precio:7900, icono:"tarta",
+      desc:"Espinaca, pollo desmenuzado y queso, con masa casera.",
+      masa:"Masa quebrada: 250 g de harina, 125 g de manteca fría, 1 huevo y agua fría lo justo.",
+      pasos:["Preparar la masa quebrada y reposarla.","Saltear espinaca con cebolla y mezclar con pollo desmenuzado y queso.","Agregar 3 huevos batidos con crema para ligar el relleno.","Hornear a 180 °C durante 40 minutos aproximadamente."],
+      rinde:"Porción: 8 a 10 personas." },
+    { id:"noq-p", familia:"noquis", nombre:"Ñoquis de papa", color:"#E8A33D", precio:6800, icono:"noqui",
+      desc:"Papa, huevo y harina. Textura liviana y suave.",
+      masa:"Masa: 1 kg de papa, 250 g de harina 0000, 1 huevo y sal.",
+      pasos:["Cocer las papas con piel, pelarlas en caliente y pasarlas por prensa.","Agregar el huevo, la sal y la harina de a poco, amasando lo mínimo para que no queden pesados.","Hacer cordones, cortar trozos de 2 cm y marcar cada uno con un tenedor.","Cocer en agua con sal hasta que suban a la superficie, unos 2 minutos."],
+      rinde:"Porción: 4 personas." },
+    { id:"noq-t", familia:"noquis", nombre:"Ñoquis tricolor", color:"#D9476B", precio:7400, icono:"tricolor", etiqueta:"Nuevo",
+      desc:"Tres masas de colores naturales: espinaca, remolacha y zanahoria.",
+      masa:"Masa base: 1 kg de papa, 250 g de harina, 1 huevo y sal. Se divide en 3 partes.",
+      pasos:["Hacer la masa de ñoquis y dividirla en tres partes iguales.","Teñir una parte con espinaca licuada (verde), otra con remolacha (rosa) y otra con zanahoria cocida (naranja).","Armar tres cordones, unirlos y cortarlos en trozos para que se vean los colores.","Cocer como los ñoquis clásicos y servir con manteca o salsa de tomate."],
+      rinde:"Porción: 4 personas." },
+    { id:"fid-huevo", familia:"fideos", nombre:"Fideos al huevo", color:"#F2C75C", precio:6200, icono:"fideos",
+      desc:"Tiras amasadas con huevo de campo, para cocinar en minutos.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal.",
+      pasos:["Hacer un volcán con la harina, agregar los huevos y la sal, y amasar hasta lograr una masa lisa.","Reposar la masa 30 minutos envuelta en film.","Estirar en láminas finas con máquina o palote y cortar en tiras de 6 mm.","Dejar secar un momento sobre harina y envasar en paquetes de 500 g."],
+      rinde:"Cocción: 2 a 3 minutos en agua hirviendo con sal." },
+    { id:"sor-4q", familia:"sorrentinos", nombre:"Sorrentinos de 4 quesos", color:"#E8A33D", precio:10000, icono:"sorrentino",
+      desc:"Mezcla de cuatro quesos fundidos, con masa fina de huevo.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos, 1 cucharadita de aceite y una pizca de sal.",
+      pasos:["Amasar la masa hasta que quede lisa y elástica, y dejarla reposar 30 minutos tapada.","Rallar los cuatro quesos y mezclarlos con un poco de ricota para darle cremosidad.","Estirar la masa muy fina, cortar cuadrados, poner una cucharada de relleno al centro y doblar en triángulo.","Sellar bordes con los dedos para que no se abran al hervir."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo con sal." },
+    { id:"sor-cq", familia:"sorrentinos", nombre:"Sorrentinos de cabutía asada y queso", color:"#E8A33D", precio:10400, icono:"sorrentino",
+      desc:"Cabutía asada con queso, en masa fina de huevo.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal.",
+      pasos:["Asar la cabutía en el horno hasta que esté tierna y pisarla sin dejar grumos.","Mezclar con queso rallado, sal y pimienta hasta obtener un relleno firme.","Estirar la masa, cortar cuadrados, rellenar y cerrar en triángulo sellando bien los bordes.","Congelar en bandejas y cocinar en agua hirviendo con sal."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo." },
+    { id:"rav-jq", familia:"ravioles", nombre:"Ravioles de jamón y queso", color:"#F2C75C", precio:9000, icono:"ravioles",
+      desc:"Jamón cocido y queso fundido, en masa al huevo.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal.",
+      pasos:["Amasar, reposar 30 minutos y estirar la masa en láminas finas.","Picar el jamón y mezclarlo con queso rallado.","Colocar montoncitos de relleno, cubrir con otra lámina, sellar y cortar con cortapastas.","Presionar bordes con tenedor y congelar en bandejas."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo con sal." },
+    { id:"rav-cq", familia:"ravioles", nombre:"Ravioles de cabutía asada y queso", color:"#D9762B", precio:9000, icono:"ravioles",
+      desc:"Cabutía asada con queso, en masa al huevo.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal.",
+      pasos:["Asar la cabutía hasta que esté tierna y pisarla.","Mezclar con queso rallado, sal y pimienta.","Armar los ravioles sellando bien los bordes y cortar con cortapastas.","Congelar en bandejas y cocinar en agua hirviendo con sal."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo con sal." },
+    { id:"rav-er", familia:"ravioles", nombre:"Ravioles de espinaca y ricota", color:"#1E4D3B", precio:9000, icono:"ravioles",
+      desc:"Espinaca fresca con ricota, en masa de dos colores.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal (la mitad con espinaca licuada).",
+      pasos:["Hervir la espinaca, escurrirla y picarla fino, luego mezclarla con ricota escurrida y parmesano.","Estirar dos láminas, una verde y una clara, y colocar el relleno sobre una de ellas.","Cubrir con la otra lámina, sellar y cortar con cortapastas.","Presionar bordes con tenedor y congelar en bandejas."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo con sal." },
+    { id:"rav-ep", familia:"ravioles", nombre:"Ravioles de espinaca y pollo", color:"#1E4D3B", precio:9000, icono:"ravioles",
+      desc:"Pollo desmenuzado con espinaca, en masa al huevo.",
+      masa:"Masa: 300 g de harina 0000, 3 huevos y una pizca de sal.",
+      pasos:["Cocinar el pollo, desmenuzarlo y dejarlo enfriar.","Mezclar con espinaca salteada y queso crema.","Armar los ravioles, sellar bien los bordes y cortar con cortapastas.","Congelar en bandejas y cocinar en agua hirviendo con sal."],
+      rinde:"Cocción: 3 a 4 minutos en agua hirviendo con sal." }
+  ];
+
+  const MINIMO_KG = 1; // paso del contador: 1 caja
+  const NUMERO_WHATSAPP = "5493813351943"; // +54 9 3813 351943
+  const pedido = {};
+  const fmt = n => "$" + Math.round(n).toLocaleString("es-AR");
+  const cajasTxt = n => n + (n === 1 ? " caja" : " cajas");
+  const trazo = 'stroke="#2A1B12" stroke-width="3"';
+  const ICONOS = {
+    sorrentino: `<circle cx="48" cy="50" r="34" fill="#FBF3DC" ${trazo}/><path d="M48 22 V78 M20 50 H76" stroke="#2A1B12" stroke-width="2" opacity=".4"/><circle cx="48" cy="50" r="10" fill="#2A1B12"/>`,
+    tarta: `<ellipse cx="48" cy="58" rx="36" ry="14" fill="#FBF3DC" ${trazo}/><path d="M12 58 V46 Q48 26 84 46 V58" fill="#F2C75C" ${trazo}/><path d="M30 46 l6 10 M50 40 l6 10 M68 46 l-6 10" stroke="#2A1B12" stroke-width="2.5"/>`,
+    noqui: `<ellipse cx="34" cy="52" rx="18" ry="11" fill="#FBF3DC" ${trazo}/><ellipse cx="62" cy="60" rx="18" ry="11" fill="#FBF3DC" ${trazo}/><ellipse cx="50" cy="36" rx="16" ry="10" fill="#FBF3DC" ${trazo}/>`,
+    fideos: `<path d="M14 30 Q22 22 30 30 T46 30 T62 30 T80 30" fill="none" stroke="#2A1B12" stroke-width="4" stroke-linecap="round"/><path d="M14 48 Q22 40 30 48 T46 48 T62 48 T80 48" fill="none" stroke="#2A1B12" stroke-width="4" stroke-linecap="round"/><path d="M14 66 Q22 58 30 66 T46 66 T62 66 T80 66" fill="none" stroke="#2A1B12" stroke-width="4" stroke-linecap="round"/>`,
+    ravioles: `<rect x="16" y="16" width="64" height="64" rx="6" fill="#FBF3DC" stroke="#2A1B12" stroke-width="3"/><circle cx="48" cy="48" r="14" fill="#2A1B12"/>`,
+    tricolor: `<ellipse cx="30" cy="54" rx="16" ry="10" fill="#1E4D3B" ${trazo}/><ellipse cx="50" cy="40" rx="16" ry="10" fill="#D9476B" ${trazo}/><ellipse cx="66" cy="60" rx="16" ry="10" fill="#E8A33D" ${trazo}/>`
+  };
+  let filtroActual = null;
+
+  function controlTarjeta(id, nombre) {
+    const kg = pedido[id] || 0;
+    if (!kg) {
+      return `<button class="agregar" data-sumar="${id}" aria-label="Agregar una caja de ${nombre}">Agregar 1 caja</button>`;
+    }
+    return `<div class="ctrl" style="justify-content:center;margin-top:.5rem">
+      <button data-restar="${id}" aria-label="Quitar una caja de ${nombre}">−</button>
+      <output aria-live="polite">${cajasTxt(kg)}</output>
+      <button data-sumar="${id}" aria-label="Sumar una caja de ${nombre}">+</button>
+    </div>`;
+  }
+
+  const NOMBRES = { sorrentinos: "Sorrentinos", tartas: "Tartas", noquis: "Ñoquis", fideos: "Fideos", ravioles: "Ravioles" };
+
+  function render(filtro = filtroActual) {
+    filtroActual = filtro;
+    const sel = document.getElementById("seleccion");
+    document.getElementById("elegir").style.display = filtro ? "none" : "block";
+    if (!filtro) { sel.hidden = true; sel.innerHTML = ""; document.getElementById("grilla").innerHTML = ""; return; }
+    sel.hidden = false;
+    sel.innerHTML = `<h3>${NOMBRES[filtro]}</h3><button type="button" class="cerrar-seleccion" aria-label="Cerrar sección ${NOMBRES[filtro]}">×</button>`;
+    const lista = PRODUCTOS.filter(p => filtro === "todas" || p.familia === filtro);
+    document.getElementById("grilla").innerHTML = lista.map(p => `
+      <article class="producto">
+        <div class="arte mantel" style="background-color:${p.color}22">
+          ${p.etiqueta ? `<span class="familia">${p.etiqueta}</span>` : ""}
+          ${p.foto ? `<img class="foto" src="${p.foto}" alt="${p.nombre}" loading="lazy">` : `<svg viewBox="0 0 96 96" aria-hidden="true">${ICONOS[p.icono]}</svg>`}
+        </div>
+        <div class="cuerpo">
+          <h3>${p.nombre}</h3>
+          <p>${p.desc}</p>${p.familia === "sorrentinos" ? '<p class="aclaracion">Cada caja contiene 12 sorrentinos.</p>' : p.familia === "ravioles" ? '<p class="aclaracion">Se hace x36 unidades.</p>' : `<p class="presentacion">${p.familia === "noquis" ? "Bandeja de 500 g." : p.familia === "fideos" ? "Paquete de 500 g." : "Unidad."}</p>`}
+          <details>
+            <summary>Cómo se elabora</summary>
+            <p class="rinde" style="margin-top:.5rem">${p.masa}</p>
+            <ol>${p.pasos.map(s => `<li>${s}</li>`).join("")}</ol>
+            <p class="rinde">${p.rinde}</p>
+          </details>
+          <div class="precio"><strong>${fmt(p.precio)}</strong></div>
+          ${controlTarjeta(p.id, p.nombre)}
+        </div>
+      </article>`).join("");
+  }
+
+  function refrescarTarjetas() { render(filtroActual); }
+
+  const kilosTotales = () => Object.values(pedido).reduce((a, b) => a + b, 0);
+  const descuentoPara = n => n >= 10 ? 0.05 : 0;
+
+  function actualizarPedido() {
+    const ids = Object.keys(pedido).filter(id => pedido[id] > 0);
+    document.getElementById("lineas").innerHTML = ids.map(id => {
+      const p = PRODUCTOS.find(x => x.id === id);
+      return `<div class="linea">
+        <div><b>${p.nombre}</b><br><small>${fmt(p.precio * pedido[id])}</small></div>
+        <div class="ctrl">
+          <button data-menos="${id}" aria-label="Quitar una caja de ${p.nombre}">−</button>
+          <output>${cajasTxt(pedido[id])}</output>
+          <button data-mas="${id}" aria-label="Sumar una caja de ${p.nombre}">+</button>
+        </div></div>`;
+    }).join("");
+
+    const kg = kilosTotales();
+    const subtotal = ids.reduce((acc, id) => acc + PRODUCTOS.find(x => x.id === id).precio * pedido[id], 0);
+    const desc = descuentoPara(kg);
+    const total = subtotal * (1 - desc);
+    document.getElementById("vacio").style.display = ids.length ? "none" : "block";
+    document.getElementById("subtotal").textContent = fmt(subtotal);
+    document.getElementById("descuento").textContent = desc
+      ? `Descuento por volumen (${desc * 100}%): −${fmt(subtotal - total)}`
+      : (kg > 0 && kg < 10 ? "Llegá a 10 cajas para ganar un 5% de descuento." : "");
+    document.getElementById("total").textContent = fmt(total);
+    document.getElementById("contador-top").textContent = cajasTxt(kg);
+
+    refrescarTarjetas();
+    const enviar = document.getElementById("enviar");
+    if (ids.length) {
+      const detalle = ids.map(id => `- ${PRODUCTOS.find(x => x.id === id).nombre}: ${cajasTxt(pedido[id])}`).join("\n");
+      enviar.href = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent(`Hola! Quiero hacer un pedido mayorista:\n${detalle}\nTotal estimado: ${fmt(total)}`)}`;
+      enviar.setAttribute("aria-disabled", "false");
+    } else {
+      enviar.href = "#";
+      enviar.setAttribute("aria-disabled", "true");
+    }
+  }
+
+  document.getElementById("grilla").addEventListener("click", e => {
+    const { sumar, restar } = e.target.dataset;
+    if (sumar) pedido[sumar] = (pedido[sumar] || 0) + MINIMO_KG;
+    if (restar) { pedido[restar] -= MINIMO_KG; if (pedido[restar] <= 0) delete pedido[restar]; }
+    if (sumar || restar) actualizarPedido();
+  });
+  document.getElementById("lineas").addEventListener("click", e => {
+    const { mas, menos } = e.target.dataset;
+    if (mas) pedido[mas] += MINIMO_KG;
+    if (menos) { pedido[menos] -= MINIMO_KG; if (pedido[menos] <= 0) delete pedido[menos]; }
+    actualizarPedido();
+  });
+  document.querySelector(".filtros").addEventListener("click", e => {
+    const b = e.target.closest(".filtro");
+    if (!b) return;
+    document.querySelectorAll(".filtro").forEach(f => f.setAttribute("aria-pressed", f === b ? "true" : "false"));
+    render(b.dataset.filtro);
+  });
+
+  document.getElementById("seleccion").addEventListener("click", e => {
+    if (!e.target.closest(".cerrar-seleccion")) return;
+    document.querySelectorAll(".tile").forEach(b => b.setAttribute("aria-pressed", "false"));
+    render(null);
+  });
+  document.querySelectorAll(".tile").forEach(b => {
+    const n = PRODUCTOS.filter(p => p.familia === b.dataset.filtro).length;
+    b.querySelector(".cuenta").textContent = n + (n === 1 ? " variedad" : " variedades");
+  });
+  actualizarPedido();
+</script>
+<div class="consulta">
+  <div class="consulta-burbuja" id="burbuja" role="status" hidden>
+    <span>¿Tenés alguna duda o consulta? Escribinos por WhatsApp.</span>
+    <button type="button" id="cerrar-burbuja" aria-label="Cerrar mensaje">×</button>
+  </div>
+  <a class="consulta-wa" id="wa-flotante" href="#" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#fff" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2z"/></svg>
+    Consultar
+  </a>
+</div>
+
+<script>
+  document.getElementById("link-combos").href = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent("Hola! Quiero consultar por los combos disponibles.")}`;
+  document.getElementById("link-fotos").href = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent("Hola! Quiero ver fotos de los productos antes de pedir.")}`;
+  document.getElementById("wa-flotante").href = `https://wa.me/${NUMERO_WHATSAPP}?text=${encodeURIComponent("Hola! Tengo una consulta sobre Pastas Caseras Martita.")}`;
+  const burbuja = document.getElementById("burbuja");
+  setTimeout(() => { burbuja.hidden = false; }, 6000);
+  document.getElementById("cerrar-burbuja").addEventListener("click", () => { burbuja.hidden = true; });
+</script>
+</body>
+</html>
