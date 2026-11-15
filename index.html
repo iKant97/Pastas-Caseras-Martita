@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Pastas Caseras Martita · Catálogo mayorista</title>
-<meta name="description" content="Sorrentinos, tartas, ñoquis y ñoquis tricolor hechos a mano. Precios por mayor.">
+<meta name="description" content="Pastas caseras hechas a mano en Tucumán: ravioles, sorrentinos, tartas, ñoquis y fideos. Precios por mayor, con descuento desde 10 cajas.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gloock&family=Figtree:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -32,12 +32,24 @@
   .btn { display:inline-block; text-decoration:none; border-radius:999px; padding:.85rem 1.5rem; font-weight:800; border:2px solid transparent; }
   .btn-principal { background:var(--masa); color:var(--tinta); }
   .btn-secundario { border-color:currentColor; color:inherit; }
+  .seguinos { font-weight:600; margin-top:1.5rem; font-size:1rem; }
+  .redes { display:flex; gap:.6rem; margin-top:.75rem; }
+  .redes a { width:44px; height:44px; border-radius:999px; border:2px solid currentColor; display:grid; place-items:center; color:inherit; text-decoration:none; }
+  .redes a:hover { background:rgba(255,255,255,.14); }
+  .redes svg { width:22px; height:22px; }
   .sello { justify-self:center; width:min(280px,70vw); aspect-ratio:1; border-radius:50%; background:var(--masa); color:var(--tinta); display:grid; place-items:center; text-align:center; transform:rotate(-8deg); box-shadow:10px 10px 0 var(--tinta); padding:2rem; }
   .sello strong { display:block; font-family:"Gloock",serif; font-weight:400; font-size:clamp(2.2rem,5vw,3.2rem); line-height:1; color:var(--tomate); }
   .sello span { display:block; font-weight:700; margin-top:.4rem; }
   .ondas { position:absolute; left:0; right:0; bottom:-1px; height:26px; background:var(--masa-claro); clip-path:polygon(0 100%,0 40%,5% 0,10% 40%,15% 0,20% 40%,25% 0,30% 40%,35% 0,40% 40%,45% 0,50% 40%,55% 0,60% 40%,65% 0,70% 40%,75% 0,80% 40%,85% 0,90% 40%,95% 0,100% 40%,100% 100%); }
 
 
+
+  @keyframes subir { from { opacity:0; transform:translateY(18px); } to { opacity:1; transform:none; } }
+  @keyframes entrar { from { opacity:0; transform:rotate(-25deg) scale(.6); } to { opacity:1; transform:rotate(-8deg) scale(1); } }
+  .hero h1, .hero .acciones { animation:subir .7s ease-out both; }
+  .hero .acciones { animation-delay:.15s; }
+  .sello { animation:entrar .9s cubic-bezier(.2,.9,.3,1.2) .45s both; }
+  @media (prefers-reduced-motion:reduce) { .hero h1, .hero .acciones, .sello { animation:none; } }
   .mantel { background-color:#FBF3DC; background-image:
     repeating-linear-gradient(0deg, rgba(194,59,34,.16) 0 11px, transparent 11px 22px),
     repeating-linear-gradient(90deg, rgba(194,59,34,.16) 0 11px, transparent 11px 22px); }
@@ -164,10 +176,14 @@
     <div class="wrap">
       <div>
         <h1 id="titulo">Pasta casera de verdad, a precio de mayor.</h1>
-        <p>Sorrentinos, tartas, ñoquis y ñoquis tricolor, amasados a mano cada mañana. Pedí por caja y llevá tu negocio a otro nivel.</p>
         <div class="acciones">
           <a class="btn btn-principal" href="#catalogo">Ver el stock</a>
           <a class="btn btn-secundario" href="#pedido">Armar mi pedido</a>
+        </div>
+        <p class="seguinos">Seguinos en redes para ver la producción, las promos y más.</p>
+        <div class="redes" aria-label="Redes sociales">
+          <a href="https://www.facebook.com/pastascmartita/" target="_blank" rel="noopener" aria-label="Facebook de Pastas Caseras Martita"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.8c0-.9.3-1.5 1.6-1.5h1.6V4.4c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.4-4 4.1v2.4H7.6V14h2.7v8z"/></svg></a>
+          <a href="https://www.instagram.com/pastas.caseras_martita/" target="_blank" rel="noopener" aria-label="Instagram de Pastas Caseras Martita"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.3" fill="currentColor"/></svg></a>
         </div>
       </div>
       <div class="sello" aria-hidden="true"><div><strong>10</strong><span>cajas para ser<br>pedido mayorista</span></div></div>
